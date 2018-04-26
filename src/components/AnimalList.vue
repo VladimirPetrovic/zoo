@@ -14,6 +14,7 @@
           <td>{{ animal.name }}</td>
           <td>{{ animal.species}}</td>
           <td>{{ animal.birthday ? animal.birthday : 'Unknown' }}</td>
+          <td>{{ animal.sector }}</td>
           <td>
             <button @click="deleteContact(key)">Remove</button>
           </td>
@@ -37,21 +38,27 @@
 </template>
 
 <script>
+const sectors = [
+  { name: 'Sector 1', surface: 'surface-1' },
+  { name: 'Sector 2', surface: 'surface-2' },
+  { name: 'Sector 3', surface: 'surface-3' }
+]
 export default {
   name: 'AnimalList',
   data() {
     return {
       animals: [
-        { name: "John", species: "species 1", birthday: "01.01.2000."},
-        { name: "Jack", species: "species 2", birthday: "02.02.2001."},
-        { name: "Mick", species: "species 3", birthday: "03.03.2002."},
-        { name: "Tack", species: "species 4", birthday: ""},
-        { name: "Toe", species: "species 5", birthday: ""}
+        { name: "John", species: "species 1", birthday: "01.01.2000.", sector: sectors[0].name },
+        { name: "Jack", species: "species 2", birthday: "02.02.2001.", sector: sectors[0].name },
+        { name: "Mick", species: "species 3", birthday: "03.03.2002.", sector: sectors[1].name },
+        { name: "Tack", species: "species 4", birthday: "", sector: sectors[1].name },
+        { name: "Toe", species: "species 5", birthday: "", sector: sectors[2].name }
       ],
       newAnimal: {
         name: '',
         species: '',
-        birthday: ''
+        birthday: '',
+        sector: ''
       }
     }
   },
@@ -64,6 +71,7 @@ export default {
       this.animals.unshift(animal);
     },
     addAnimal() {
+      this.newAnimal.sector = sectors[2].name;
       this.animals.push(this.newAnimal);
       this.newAnimal = {};
     }
