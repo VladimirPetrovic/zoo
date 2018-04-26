@@ -25,6 +25,23 @@
       </tbody>
     </table>
 
+    <table>
+      <thead>
+        <th>Sector Name</th>
+        <th>Surface</th>
+        <th>&nbsp;</th>
+      </thead>
+      <tbody>
+        <tr v-for="(sector, key) in sectors" :key="key">
+          <td>{{ sector.name }}</td>
+          <td>{{ sector.surface}}</td>
+          <td>
+            <button @click="listAllAnimals(sector)">List all animals</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     <form @submit.prevent="addAnimal">
       <label>Name</label>
       <input type="text" v-model="newAnimal.name" placeholder="Name" /><br>
@@ -47,6 +64,7 @@ export default {
   name: 'AnimalList',
   data() {
     return {
+      sectors: sectors,
       animals: [
         { name: "John", species: "species 1", birthday: "01.01.2000.", sector: sectors[0].name },
         { name: "Jack", species: "species 2", birthday: "02.02.2001.", sector: sectors[0].name },
@@ -64,16 +82,27 @@ export default {
   },
   methods: {
     deleteContact(key) {
-      this.animals.splice(key, 1);
+      this.animals.splice(key, 1)
     },
     moveAnimalToTop(animal) {
-      this.animals.splice(this.animals.indexOf(animal), 1);
-      this.animals.unshift(animal);
+      this.animals.splice(this.animals.indexOf(animal), 1)
+      this.animals.unshift(animal)
     },
     addAnimal() {
-      this.newAnimal.sector = sectors[2].name;
-      this.animals.push(this.newAnimal);
-      this.newAnimal = {};
+      this.newAnimal.sector = sectors[2].name
+      this.animals.push(this.newAnimal)
+      this.newAnimal = {}
+    },
+    listAllAnimals(sector) {
+      let animalsFromSector = []
+
+      this.animals.forEach(function(animal) {
+        if (animal.sector === sector.name) {
+          animalsFromSector.push(animal.name);
+        }
+      })
+
+      alert(animalsFromSector)
     }
   }
 }
