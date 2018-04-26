@@ -23,6 +23,16 @@
         </tr>
       </tbody>
     </table>
+
+    <form @submit.prevent="addAnimal">
+      <label>Name</label>
+      <input type="text" v-model="newAnimal.name" placeholder="Name" /><br>
+      <label>Species</label>
+      <input type="text" v-model="newAnimal.species" placeholder="Species" /><br>
+      <label>Birthday</label>
+      <input type="text" v-model="newAnimal.birthday" placeholder="Birthday" /><br>
+      <button type="submit">Add Animal</button>
+    </form>
   </div>
 </template>
 
@@ -52,6 +62,10 @@ export default {
     moveAnimalToTop(animal) {
       this.animals.splice(this.animals.indexOf(animal), 1);
       this.animals.unshift(animal);
+    },
+    addAnimal() {
+      this.animals.push(this.newAnimal);
+      this.newAnimal = {};
     }
   }
 }
