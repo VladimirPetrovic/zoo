@@ -17,6 +17,9 @@
           <td>
             <button @click="deleteContact(key)">Remove</button>
           </td>
+          <td>
+            <button @click="moveAnimalToTop(animal)">Move to top</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -45,6 +48,10 @@ export default {
   methods: {
     deleteContact(key) {
       this.animals.splice(key, 1);
+    },
+    moveAnimalToTop(animal) {
+      this.animals.splice(this.animals.indexOf(animal), 1);
+      this.animals.unshift(animal);
     }
   }
 }
