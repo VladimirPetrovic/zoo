@@ -14,6 +14,9 @@
           <td>{{ animal.name }}</td>
           <td>{{ animal.species}}</td>
           <td>{{ animal.birthday ? animal.birthday : 'Unknown' }}</td>
+          <td>
+            <button @click="deleteContact(key)">Remove</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -28,7 +31,7 @@ export default {
       animals: [
         { name: "John", species: "species 1", birthday: "01.01.2000."},
         { name: "Jack", species: "species 2", birthday: "02.02.2001."},
-        { name: "Mick", species: "species 3", birthday: "03.03.2002,"},
+        { name: "Mick", species: "species 3", birthday: "03.03.2002."},
         { name: "Tack", species: "species 4", birthday: ""},
         { name: "Toe", species: "species 5", birthday: ""}
       ],
@@ -37,6 +40,11 @@ export default {
         species: '',
         birthday: ''
       }
+    }
+  },
+  methods: {
+    deleteContact(key) {
+      this.animals.splice(key, 1);
     }
   }
 }
