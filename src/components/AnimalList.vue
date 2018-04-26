@@ -13,7 +13,7 @@
         <tr v-for="(animal, key) in animals" :key="key">
           <td>{{ animal.name }}</td>
           <td>{{ animal.species}}</td>
-          <td>{{ animal.birthday }}</td>
+          <td>{{ animal.birthday ? animal.birthday : 'Unknown' }}</td>
         </tr>
       </tbody>
     </table>
@@ -29,8 +29,8 @@ export default {
         { name: "John", species: "species 1", birthday: "01.01.2000."},
         { name: "Jack", species: "species 2", birthday: "02.02.2001."},
         { name: "Mick", species: "species 3", birthday: "03.03.2002,"},
-        { name: "Tack", species: "species 4", birthday: "04.04.2003"},
-        { name: "Toe", species: "species 5", birthday: "05.05.2004."}
+        { name: "Tack", species: "species 4", birthday: ""},
+        { name: "Toe", species: "species 5", birthday: ""}
       ],
       newAnimal: {
         name: '',
